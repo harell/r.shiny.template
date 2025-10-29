@@ -1,0 +1,10 @@
+.Rproj.user
+.Rhistory
+scratchpad.md
+
+# Environment variables (contains sensitive credentials)
+.Renviron
+.Renviron.local
+
+# rsconnect deployment history (may contain app IDs)
+rsconnect/

@@ -1,0 +1,18 @@
+# ShinyApps.io Deployment Credentials
+# 
+# IMPORTANT: This file contains sensitive credentials and should NEVER be committed to version control.
+# Make sure .Renviron is in .gitignore!
+#
+# Instructions:
+# 1. Go to https://www.shinyapps.io/
+# 2. Sign in to your account
+# 3. Click your account name in the top right
+# 4. Select "Tokens"
+# 5. Copy the three values below:
+
+SHINYAPPS_NAME="your-account-name"
+SHINYAPPS_TOKEN="your-token-here"
+SHINYAPPS_SECRET="your-secret-here"
+
+# Optional: Custom app name (defaults to package name if not set)
+# SHINYAPPS_APPNAME="my-custom-app-name"
