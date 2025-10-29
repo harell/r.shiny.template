@@ -61,7 +61,7 @@ jobs:
           args: 'c("--no-manual", "--as-cran", "--no-build-vignettes", "--ignore-vignettes")'
 
       - name: Deploy to shinyapps.io
-        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        if: github.event_name == 'push'
         env:
           SHINYAPPS_NAME: ${{ secrets.SHINYAPPS_NAME }}
           SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
