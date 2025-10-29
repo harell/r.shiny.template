@@ -1,0 +1,22 @@
+name: Capture CRAN snapshot from R release date
+description: Determine the CRAN snapshot URL matching the running R release date.
+
+runs:
+  using: composite
+  steps:
+    - name: Capture CRAN snapshot from R release date
+      shell: Rscript {0}
+      run: |
+        version_info <- R.Version()
+        release_date <- sprintf(
+          "%s-%02i-%02i",
+          version_info$year,
+          as.integer(version_info$month),
+          as.integer(version_info$day)
+        )
+        repos <- sprintf("https://packagemanager.rstudio.com/cran/%s", release_date)
+        cat(
+          sprintf("CRAN_SNAPSHOT=%s\n", repos),
+          file = Sys.getenv("GITHUB_ENV"),
+          append = TRUE
+        )

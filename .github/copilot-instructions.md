@@ -9,6 +9,8 @@
 
 ## Linter
 - Markdown: avoid tab characters and keep blank lines before/after fenced code blocks.
+- Markdown: start files with a top-level heading.
+- Markdown: surround lists with blank lines.
 
 ---
 
