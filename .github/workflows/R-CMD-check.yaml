@@ -47,7 +47,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v2
         with:
-          extra-packages: any::roxygen2,any::rcmdcheck
+          extra-packages: any::roxygen2,any::rcmdcheck,any::rsconnect,any::desc
           cache: true
             
       - name: Build documentation with roxygen2
@@ -59,3 +59,11 @@ jobs:
           upload-snapshots: true
           build_args: 'c("--no-manual", "--no-build-vignettes")'
           args: 'c("--no-manual", "--as-cran", "--no-build-vignettes", "--ignore-vignettes")'
+
+      - name: Deploy to shinyapps.io
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        env:
+          SHINYAPPS_NAME: ${{ secrets.SHINYAPPS_NAME }}
+          SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
+          SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
+        run: Rscript inst/tasks/deploy_to_shinyio.R
