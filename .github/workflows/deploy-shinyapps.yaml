@@ -51,4 +51,6 @@ jobs:
           SHINYAPPS_NAME: ${{ secrets.SHINYAPPS_NAME }}
           SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
           SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
-        run: Rscript inst/tasks/deploy_to_shinyio.R
+        run: |
+          Rscript -e "options(repos = c(CRAN = Sys.getenv('CRAN_SNAPSHOT')));" \
+                  -e "source('inst/tasks/deploy_to_shinyio.R')"

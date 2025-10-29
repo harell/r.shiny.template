@@ -51,7 +51,14 @@ app_name <- desc::desc_get_field("Package")
 # This prevents rsconnect from trying to reinstall the whitelabel package
 rsconnect::deployApp(
   appName = app_name,
-  appFiles = c("R/", "inst/", "NAMESPACE", "DESCRIPTION", "app.R"),
+  appFiles = c(
+    "R/",
+    "inst/app",
+    "inst/golem-config.yml",
+    "NAMESPACE",
+    "DESCRIPTION",
+    "app.R"
+  ),
   appPrimaryDoc = "app.R",
   account = account_name,
   forceUpdate = TRUE,
