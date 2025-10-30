@@ -4,6 +4,7 @@
 - Every time you need to fix linter errors and provide the error messages, update the Linter section in .github/copilot-instructions.md accordingly. Use concise, oneliner instruction. Ensure your future responses avoid repeating the same errors.
 - Always use the native pipe operator `|>` instead of the magrittr pipe `%>%` in all R code.
 - Use NZ (New Zealand) English spelling for all function names and documentation (e.g., "colour" not "color").
+- Name files in `R/` with hyphenated prefixes to signal logical layers (e.g., `domain-value_objects.R`) because subdirectories are not permitted.
 
 ---
 
