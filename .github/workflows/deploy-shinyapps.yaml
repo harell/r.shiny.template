@@ -20,6 +20,14 @@ jobs:
       R_KEEP_PKG_SOURCE: yes
 
     steps:
+      - name: Verify required secrets
+        env:
+          SHINYAPPS_NAME: ${{ secrets.SHINYAPPS_NAME || vars.SHINYAPPS_NAME }}
+          SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN || vars.SHINYAPPS_TOKEN }}
+          SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET || vars.SHINYAPPS_SECRET }}
+        run: |
+          [ -n "$SHINYAPPS_NAME" ] && [ -n "$SHINYAPPS_TOKEN" ] && [ -n "$SHINYAPPS_SECRET" ] || { echo "Error: Missing required secrets (SHINYAPPS_NAME, SHINYAPPS_TOKEN, SHINYAPPS_SECRET)"; exit 1; }
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
@@ -50,8 +58,8 @@ jobs:
         env:
           R_CONFIG_ACTIVE: production
           CRAN_SNAPSHOT: ${{ env.CRAN_SNAPSHOT }}
-          SHINYAPPS_NAME: ${{ secrets.SHINYAPPS_NAME }}
-          SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
-          SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
+          SHINYAPPS_NAME: ${{ secrets.SHINYAPPS_NAME || vars.SHINYAPPS_NAME }}
+          SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN || vars.SHINYAPPS_TOKEN }}
+          SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET || vars.SHINYAPPS_SECRET }}
         run: |
           Rscript inst/tasks/deploy_to_shinyio.R

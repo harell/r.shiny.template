@@ -8,5 +8,7 @@ scratchpad.md
 
 # rsconnect deployment history (may contain app IDs)
 rsconnect/
-
+man/
+scratchpad.md
+inst/doc
 /.quarto/
