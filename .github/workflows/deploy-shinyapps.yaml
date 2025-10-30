@@ -48,7 +48,10 @@ jobs:
 
       - name: Deploy to shinyapps.io
         env:
+          R_CONFIG_ACTIVE: production
+          CRAN_SNAPSHOT: ${{ env.CRAN_SNAPSHOT }}
           SHINYAPPS_NAME: ${{ secrets.SHINYAPPS_NAME }}
           SHINYAPPS_TOKEN: ${{ secrets.SHINYAPPS_TOKEN }}
           SHINYAPPS_SECRET: ${{ secrets.SHINYAPPS_SECRET }}
-        run: Rscript inst/tasks/deploy_to_shinyio.R
+        run: |
+          Rscript inst/tasks/deploy_to_shinyio.R
